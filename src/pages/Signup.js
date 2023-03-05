@@ -19,7 +19,7 @@ const Signup = () => {
     const navigate = useNavigate()
 
     const handleChange = (e) => {
-        setNewUser((recent)=>({...recent, [e.target.artist_name]: e.target.value}))
+        setNewUser((recent)=>({...recent, [e.target.name]: e.target.value}))
         console.log("Changin user", newUser)
     }
 
