@@ -1,4 +1,4 @@
-import { Routes, Route, Link, Navigate, Outlet } from 'react-router-dom'
+import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import './App.css';
 
 import Navbar from './components/Navbar';
@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
+import EditProfile from './pages/EditProfile';
 
 const App = () => {
 
@@ -35,6 +36,7 @@ const App = () => {
           <Route element={<LoggedIn />}>
 
             <Route path='/profile/:id' element={<Profile />} />
+            <Route path='/edit-profile/:id' element={<EditProfile />} />
 
           </Route>
 
