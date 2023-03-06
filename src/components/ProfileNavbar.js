@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { LoadingContext } from "../context/loading.context"
 
-const Navbar = () => {
+const ProfileNavbar = () => {
 
     const getToken = () => {
         return localStorage.getItem("authToken")
@@ -38,4 +38,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar
+export default ProfileNavbar
