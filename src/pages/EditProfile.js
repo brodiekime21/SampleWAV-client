@@ -4,12 +4,13 @@ import axios from 'axios';
 import { useContext } from "react";
 import { LoadingContext } from "../context/loading.context";
 import { useEffect } from 'react';
+import { post } from '../services/authService'
 
 
 const EditProfile = () => {
-  const { userId } = useParams();
+  const { id } = useParams();
   const [artistName, setArtistName] = useState('');
-  const { user } = useContext(LoadingContext);
+  const { user, setUser } = useContext(LoadingContext);
 
 
   useEffect(() => {
@@ -21,9 +22,9 @@ const EditProfile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.put(`/edit-profile/${userId}`, { artist_name: artistName });
+      const res = await post(`/users/edit-profile/${id}`, { artist_name: artistName });
       console.log(res.data);
-      // do something with the updated user data, e.g. redirect to profile page
+      setUser(res.data)
     } catch (err) {
       console.log(err);
     }
@@ -36,7 +37,7 @@ const EditProfile = () => {
         <form onSubmit={handleSubmit}>
           <label>
             Artist Name:
-            <input type="text" value={artistName} onChange={(e) => setArtistName(e.target.value)} />
+            <input type="text" name="artistName" value={artistName} onChange={(e) => setArtistName(e.target.value)} />
           </label>
           <button type="submit">Save</button>
         </form>

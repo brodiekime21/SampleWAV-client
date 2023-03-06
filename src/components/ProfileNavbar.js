@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { LoadingContext } from "../context/loading.context"
-import { AuthContext } from "../context/auth.context"
 
 const Navbar = () => {
 
@@ -11,23 +10,20 @@ const Navbar = () => {
 
     const { user } = useContext(LoadingContext)  //   eventually change to const { user, getSamples } = useContext(LoadingContext)
 
-    const { logout } = useContext(AuthContext)
 
     return (
         <nav>
 
-            <Link to={'/'}>Home</Link>
-            <Link to={'/samples'}>Browse Samples</Link>
-            {/* add search bar here for users and samples based on their name for each */}
-            {/* <Link onClick={getCountries} to={'/countries'}>Countries</Link>
-            <Link to={'/posts'}>Posts</Link> */}
+
 
             {
                 getToken() ? 
                 <>
-                    {user && <Link to={`/profile/${user._id}`}>Profile</Link>}
 
-                    <button onClick={logout}>Logout</button>
+                    {user && <Link to={`/edit-profile/${user._id}`}>Edit Profile</Link>}
+                    {user && <Link to={`/create-sample/`}>Create A Sample</Link>}
+
+
                 </>
 
                 : 

@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import EditProfile from './pages/EditProfile';
+import CreateSample from './pages/CreateSample';
 
 const App = () => {
 
@@ -37,6 +38,7 @@ const App = () => {
 
             <Route path='/profile/:id' element={<Profile />} />
             <Route path='/edit-profile/:id' element={<EditProfile />} />
+            <Route path='/create-sample' element={<CreateSample />} />
 
           </Route>
 

@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { LoadingContext } from "../context/loading.context";
+import ProfileNavbar from "../components/ProfileNavbar";
 
 const Profile = () => {
   const { user } = useContext(LoadingContext);
@@ -10,6 +11,7 @@ const Profile = () => {
 
 return (
     <div>
+     <ProfileNavbar />
       <h1>Profile</h1>
       {user && (
         <div>
