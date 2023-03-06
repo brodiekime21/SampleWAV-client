@@ -10,8 +10,7 @@ const LoadingProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState(null);
     const [message, setMessage] = useState('');
-
-    const [samples, setSamples] = useState(null)
+    const [sample, setSample] = useState([])
 
     // const [ countries, setCountries ] = useState(null);
     // const [ country, setCountry ] = useState(null);
@@ -93,7 +92,7 @@ const LoadingProvider = ({ children }) => {
 
 
       return (
-        <LoadingContext.Provider value={{ setUser, user, setIsLoading, setMessage, setTimedMessage }}>
+        <LoadingContext.Provider value={{ sample, setSample, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
           {children}
         </LoadingContext.Provider>
       );

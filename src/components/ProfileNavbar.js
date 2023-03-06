@@ -20,8 +20,8 @@ const ProfileNavbar = () => {
                 getToken() ? 
                 <>
 
-                    {user && <Link to={`/edit-profile/${user._id}`}>Edit Profile</Link>}
                     {user && <Link to={`/create-sample/`}>Create A Sample</Link>}
+                    {user && <Link to={`/edit-profile/${user._id}`}>Edit Profile</Link>}
 
 
                 </>

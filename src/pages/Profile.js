@@ -11,22 +11,22 @@ const Profile = () => {
 
 return (
     <div>
-     <ProfileNavbar />
       <h1>Profile</h1>
       {user && (
         <div>
-          <p>Email: {user.email}</p>
-          <p>Artist Name: {user.artist_name}</p>
-          <img id="profile_image" src={user.profile_image} alt="Profile"/>
-          <p>Bio: {user.bio}</p>
-          <p>Social Links: </p>
+          {/* <p>Email: {user.email}</p> */}
+          <p>{user.artist_name}</p>
           <p>Location: {user.city}, {user.country}</p>
-        
-
+          <img id="profile_image" src={user.profile_image} alt="Profile"/>
+          <div>
+            <p>Bio: {user.bio}</p>
+            <p>Social Links: </p>
+          </div>
           
           {/* <p>Member Since: {joinDate}</p> */}
         </div>
       )}
+     <ProfileNavbar />
     </div>
   );
 };

@@ -44,6 +44,7 @@ const EditProfile = () => {
       });
       console.log(res.data);
       setUser(res.data)
+      
     } catch (err) {
       console.log(err);
     }
@@ -64,10 +65,6 @@ const EditProfile = () => {
         .catch((err) => {
           console.log("Upload error", err)
         })
-
-
-
-
   }
 
   return (
