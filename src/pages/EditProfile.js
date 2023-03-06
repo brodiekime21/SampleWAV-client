@@ -49,6 +49,27 @@ const EditProfile = () => {
     }
   }
 
+  const handleFileUpload = (e) => {
+
+    console.log("Uploading photo...")
+
+      const uploadData = new FormData()
+      uploadData.append('profileImage', e.target.files[0])
+      console.log("Upload data" , uploadData, e.target.files)
+      post('/users/new-profile-photo', uploadData)
+        .then((result) => {
+          setProfileImage(result.data.profileImage)
+          console.log("This is photo", result.data)
+        })
+        .catch((err) => {
+          console.log("Upload error", err)
+        })
+
+
+
+
+  }
+
   return (
     <div>
       <h1>Edit Profile</h1>
@@ -60,7 +81,10 @@ const EditProfile = () => {
           </label>
           <label>
             Profile Picture:
-            <input type="file" name="profileImage" onChange={(e) => setProfileImage(e.target.value)} />
+            <input type="file" name="profileImage" 
+            onChange={(e) => handleFileUpload(e)}
+            // onChange={(e) => setProfileImage(e.target.value)}
+             />
           </label>
           <label>
             Bio:
