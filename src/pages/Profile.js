@@ -15,6 +15,7 @@ return (
         <div>
           <p>Email: {user.email}</p>
           <p>Artist Name: {user.artist_name}</p>
+          {/* <img id="profile_image" src={user.profile_image} alt="Profile Image"> */}
           
           {/* <p>Member Since: {joinDate}</p> */}
         </div>
