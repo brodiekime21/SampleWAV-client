@@ -25,6 +25,23 @@ const LoadingProvider = ({ children }) => {
       }, 4000)
     }
 
+
+
+
+      return (
+        <LoadingContext.Provider value={{ sample, setSample, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
+          {children}
+        </LoadingContext.Provider>
+      );
+
+
+}
+
+export { LoadingContext, LoadingProvider }
+
+
+
+
 //     const getSamples = () => {
 
 //       if (!samples) {
@@ -88,16 +105,3 @@ const LoadingProvider = ({ children }) => {
     //       {children}
     //     </LoadingContext.Provider>
     //   );
-
-
-
-      return (
-        <LoadingContext.Provider value={{ sample, setSample, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
-          {children}
-        </LoadingContext.Provider>
-      );
-
-
-}
-
-export { LoadingContext, LoadingProvider }

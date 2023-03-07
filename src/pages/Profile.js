@@ -1,12 +1,25 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { LoadingContext } from "../context/loading.context";
 import ProfileNavbar from "../components/ProfileNavbar";
+import { get } from "../services/authService";
+
 
 const Profile = () => {
   const { user  } = useContext(LoadingContext);
 
   // let newUser = setUser(user)
   // const joinDate = new Date(user.created_at).toLocaleDateString();
+
+
+
+  const [mySamples, setMySamples] = useState(null);
+  useEffect(() => {
+    get("/samples/browse-samples").then((response) => {
+      console.log(response.data);
+      setMySamples(response.data);
+    });
+  }, []);
+
 
 
 return (
@@ -26,7 +39,18 @@ return (
           {/* <p>Member Since: {joinDate}</p> */}
         </div>
       )}
+    
      <ProfileNavbar />
+     {mySamples &&
+        mySamples.map((samp) => {
+          console.log(samp.sample_file);
+          return (
+            <>
+              <audio src={samp.sample_file} controls></audio>
+            </>
+          );
+        })}
+
     </div>
   );
 };
