@@ -46,11 +46,11 @@ const CreatePack = () => {
           
           try {
             const res = await post(`/packs/create-pack`, { 
-              samples: [] || samples.map((curr) => curr.value) || [], 
+              samples: null || samples.map((curr) => curr.value) || [], 
               pack_name: packName,
-              instruments: [] || instruments.map((curr) => curr.value) || [],
-              genres: [] || genres.map((curr) => curr.value) || [],
-              pack_image: packImage || oldPackImage,
+              instruments: null || instruments.map((curr) => curr.value) || [],
+              genres: null || genres.map((curr) => curr.value) || [],
+              pack_image:  oldPackImage || packImage,
             });
             console.log("NEW PACK", res.data);
             setPack(res.data);
@@ -115,10 +115,10 @@ const CreatePack = () => {
             {user && 
             
             <> 
-            
+             
             {
-
-              user.samples.length &&
+              
+              user.samples.length ? (
 
               <form onSubmit={handleSubmit}>
 
@@ -152,7 +152,9 @@ const CreatePack = () => {
                 <button type="submit">Create Pack</button>
 
               </form>
-            }
+              ) : (
+          <p>Create samples first before you create your pack</p>
+        )}
             </>
             }
         </div>

@@ -2,8 +2,9 @@ import { useContext, useState, useEffect } from "react";
 import { LoadingContext } from "../context/loading.context";
 import ProfileNavbar from "../components/ProfileNavbar";
 import { get } from "../services/authService";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import Avatar from 'react-avatar';
+import PackDetails from "./PackDetails";
 // import styled from "styled-components";
 
 
@@ -94,8 +95,8 @@ return (
             <img id="pack_image" src={pack.pack_image} alt="Pack"/>
             
             <button onClick={()=>handlePackDelete(pack._id)}>Delete</button>
-            
-
+            {user && <Link to={`/pack-details/${pack._id}`}>Open pack</Link>}
+ 
             </>
           );
         })}

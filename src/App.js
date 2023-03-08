@@ -11,6 +11,8 @@ import EditProfile from './pages/EditProfile';
 import CreateSample from './pages/CreateSample';
 import BrowseSamples from './pages/BrowseSamples';
 import CreatePack from './pages/CreatePack';
+import PackDetails from './pages/PackDetails';
+
 
 const App = () => {
 
@@ -43,6 +45,8 @@ const App = () => {
             <Route path='/edit-profile/:id' element={<EditProfile />} />
             <Route path='/create-sample' element={<CreateSample />} />
             <Route path='/create-pack' element={<CreatePack />} />
+            <Route path='/pack-details/:id' element={<PackDetails />} />
+
 
 
           </Route>

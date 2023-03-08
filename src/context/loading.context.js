@@ -11,7 +11,7 @@ const LoadingProvider = ({ children }) => {
     const [user, setUser] = useState(null);
     const [message, setMessage] = useState('');
     const [sample, setSample] = useState([]);
-    const [pack, setPack] = useState([])
+    const [pack, setPack] = useState(null)
 
 
     const setTimedMessage = (newMessage) => {
