@@ -26,13 +26,14 @@ const CreatePack = () => {
 
   useEffect(() => {
     if (pack) {
-        setSamples(sample.samples);
-        setPackName(sample.pack_name);
-        setInstruments(sample.instruments)
-        setGenres(sample.genres);
-        setOldPackImage(sample.pack_image)
+        setSamples(pack.samples);
+        setPackName(pack.pack_name);
+        setInstruments(pack.instruments)
+        setGenres(pack.genres);
+        setOldPackImage(pack.pack_image)
     }
   }, [pack]);
+
   const handleSubmit = async (e) => {
           e.preventDefault();
           console.log("THIS IS samples",samples)
@@ -50,7 +51,7 @@ const CreatePack = () => {
               pack_name: packName,
               instruments: instruments || [],
               genres: genres || [],
-              pack_image:   packImage || oldPackImage,
+              pack_image:   packImage || oldPackImage ,
             });
             console.log("NEW PACK", res.data);
             setPack(res.data);

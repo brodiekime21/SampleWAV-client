@@ -80,14 +80,25 @@ return (
 
         pack.samples.length ?
 
-
+        
      
-       pack.samples.map((pack) => {
-       console.log("THIS IS THE MAPPED PACK SAMPLE FILES", pack.sample_file);
+       pack.samples.map((sample) => {
        return (
            <>
-           <audio src={pack.sample_file} controls></audio>
-           <h2>Hi</h2>
+           <p>{sample.sample_name}</p>
+           <p>{sample.bpm}</p>
+           <p>{sample.genres}</p>
+           <p>{sample.instrument}</p>
+           {
+            sample.genres.map((genre)=>{
+              return(
+                <>
+                    <p>{genre.genres}</p>
+                </>
+              )
+            })
+           }
+           <audio src={sample.sample_file} controls></audio>
        
            {/* <button onClick={()=>handleSampleDelete(pack._id)}>Delete</button> */}
        

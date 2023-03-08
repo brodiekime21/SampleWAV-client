@@ -76,6 +76,8 @@ return (
           console.log(samp.sample_file);
           return (
             <>
+            <img id="sample_image" src={samp.sample_image} alt="Sample"/>
+
             <audio src={samp.sample_file} controls></audio>
             
             <button onClick={()=>handleSampleDelete(samp._id)}>Delete</button>
