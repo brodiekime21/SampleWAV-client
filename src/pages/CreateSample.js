@@ -47,7 +47,7 @@ const CreateSample = () => {
               sample_file: sampleFile || oldSampleFile, 
               sample_name: sampleName,
               instrument: instrument,
-              genres: [] || genres.map((curr) => curr.value) || [],
+              genres: genres || [],
               key: key,
               bpm: bpm,
               type: type,
@@ -60,6 +60,10 @@ const CreateSample = () => {
           } catch (err) {
             console.log(err);
           }
+  }
+
+  const handleGenresChange = (e)=>{
+    setGenres(e.map((curr) => curr.value))
   }
 
   const handleSampleUpload = (e) => {
@@ -143,7 +147,9 @@ const CreateSample = () => {
                 </Select>
 
                 <label htmlFor="genres">Choose the genres:</label>
-                  <Select name="genres" options={genreOptions} id="genres" isMulti onChange={(e) => {console.log(genres) ;setGenres(e)}}>
+                  <Select name="genres" options={genreOptions} id="genres" isMulti onChange={
+                    (e) =>  handleGenresChange(e)
+                    }>
                   </Select>
 
                 <button type="submit">Create Sample</button>

@@ -46,11 +46,11 @@ const CreatePack = () => {
           
           try {
             const res = await post(`/packs/create-pack`, { 
-              samples: null || samples.map((curr) => curr.value) || [], 
+              samples: samples || [], 
               pack_name: packName,
-              instruments: null || instruments.map((curr) => curr.value) || [],
-              genres: null || genres.map((curr) => curr.value) || [],
-              pack_image:  oldPackImage || packImage,
+              instruments: instruments || [],
+              genres: genres || [],
+              pack_image:   packImage || oldPackImage,
             });
             console.log("NEW PACK", res.data);
             setPack(res.data);
@@ -61,25 +61,17 @@ const CreatePack = () => {
           }
   }
 
-  // const handleSampleUpload = (e) => {
+  const handleSampleChange = (e) => {
+    setSamples(e.map((curr) => curr.value))
+  }
 
-  //       console.log("Uploading sample...")
-    
-  //         const uploadData = new FormData()
-  //         uploadData.append('sampleFile', e.target.files[0])
+  const handleInstrumentChange = (e)=>{
+    setInstruments(e.map((curr) => curr.value))
+  }
 
-  //         if (e.target.files.length){          
-  //         console.log("Upload data" , uploadData, e.target.files)
-  //         post('/samples/new-sample-file', uploadData)
-  //           .then((result) => {
-  //             setSampleFile(result.data.sampleFile)
-  //             console.log("This is sample", result.data)
-  //           })
-  //           .catch((err) => {
-  //             console.log("Upload error", err)
-  //           })}
-  // }
-
+  const handleGenresChange = (e)=>{
+    setGenres(e.map((curr) => curr.value))
+  }
 
 
   const handlePackImageUpload = (e) => {
@@ -125,7 +117,9 @@ const CreatePack = () => {
               {/* {console.log("This is user", user)} */}
 
               <label htmlFor="samples">Choose the samples from your library:</label>
-                  <Select name="samples" id="samples" options={sampleOptions(user.samples)} isMulti onChange={(e) => setSamples(e)}>
+                  <Select name="samples" id="samples" options={sampleOptions(user.samples)} isMulti onChange={
+                    (e) => handleSampleChange(e)
+                    }>
                 </Select>
 
                 <label>
@@ -142,11 +136,15 @@ const CreatePack = () => {
 
 
                 <label htmlFor="instruments">Choose the instruments:</label>
-                  <Select name="instruments" id="instruments" options={instrumentOptions} isMulti onChange={(e) => setInstruments(e)}>
+                  <Select name="instruments" id="instruments" options={instrumentOptions} isMulti onChange={
+                    (e) => handleInstrumentChange(e)
+                    }>
                 </Select>
 
                 <label htmlFor="genres">Choose the genres:</label>
-                  <Select name="genres" options={genreOptions} id="genres" isMulti onChange={(e) => {console.log(genres) ;setGenres(e)}}>
+                  <Select name="genres" options={genreOptions} id="genres" isMulti onChange={
+                    (e) =>  handleGenresChange(e)
+                    }>
                   </Select>
 
                 <button type="submit">Create Pack</button>
