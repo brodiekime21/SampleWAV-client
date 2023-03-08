@@ -9,6 +9,7 @@ import Profile from './pages/Profile';
 import Signup from './pages/Signup';
 import EditProfile from './pages/EditProfile';
 import CreateSample from './pages/CreateSample';
+import BrowseSamples from './pages/BrowseSamples';
 
 const App = () => {
 
@@ -33,6 +34,7 @@ const App = () => {
         <Routes>
 
           <Route path='/' element={<Home />} />
+          <Route path='/browse-samples' element={<BrowseSamples />} />
 
           <Route element={<LoggedIn />}>
 

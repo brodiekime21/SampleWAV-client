@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { get } from "../services/authService"
 import { LoadingContext } from "./loading.context";
 
+
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
@@ -32,8 +33,6 @@ const AuthProvider = ({ children }) => {
                 })
                 .finally(() => {
                     setIsLoading(false)
-                    // console.log("This is the user", user)
-                    // console.log("LINee 38 message", message)
                 });
             } else {
                 localStorage.clear()
@@ -41,7 +40,6 @@ const AuthProvider = ({ children }) => {
                 setUser(null);
             }
 
-            console.log("This is the user", user)
     }
 
     const logout = () => {

@@ -12,17 +12,12 @@ const LoadingProvider = ({ children }) => {
     const [message, setMessage] = useState('');
     const [sample, setSample] = useState([])
 
-    // const [ countries, setCountries ] = useState(null);
-    // const [ country, setCountry ] = useState(null);
-
-    // const [ posts, setPosts ] = useState([])
-    // const [ post, setPost ] = useState(null)
 
     const setTimedMessage = (newMessage) => {
       setMessage(newMessage);
       setTimeout(() => {
         setMessage('')
-      }, 4000)
+      }, 1000)
     }
 
 

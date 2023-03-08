@@ -17,7 +17,7 @@ const Navbar = () => {
         <nav>
 
             <Link to={'/'}>Home</Link>
-            <Link to={'/samples'}>Browse Samples</Link>
+            <Link to={'/browse-samples'}>Browse Samples</Link>
             {/* add search bar here for users and samples based on their name for each */}
             {/* <Link onClick={getCountries} to={'/countries'}>Countries</Link>
             <Link to={'/posts'}>Posts</Link> */}
