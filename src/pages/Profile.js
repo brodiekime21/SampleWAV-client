@@ -45,7 +45,7 @@ return (
         <div>
           <p>{user.artist_name}</p>
           <p>Location: {user.city}, {user.country}</p>
-          <Avatar id="profile_image" src={user.profile_image} alt="Profile"/>
+          <Avatar round="true" id="profile_image" src={user.profile_image} alt="Profile"/>
           <div>
             <p>Bio: {user.bio}</p>
             <p>Social Links: </p>
