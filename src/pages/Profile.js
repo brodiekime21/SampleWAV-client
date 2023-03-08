@@ -70,6 +70,20 @@ return (
           );
         })}
 
+      {/* {user &&
+        user.samples.map((samp) => {
+          console.log(samp.sample_file);
+          return (
+            <>
+            <audio src={samp.sample_file} controls></audio>
+            MAKE THIS FOR PACKS AFTER ROUTES ARE DONE
+            <button onClick={()=>handleDelete(samp._id)}>Delete</button>
+            
+
+            </>
+          );
+        })} */}
+
     </div>
   );
 };

@@ -10,6 +10,7 @@ import Signup from './pages/Signup';
 import EditProfile from './pages/EditProfile';
 import CreateSample from './pages/CreateSample';
 import BrowseSamples from './pages/BrowseSamples';
+import CreatePack from './pages/CreatePack';
 
 const App = () => {
 
@@ -41,6 +42,8 @@ const App = () => {
             <Route path='/profile/:id' element={<Profile />} />
             <Route path='/edit-profile/:id' element={<EditProfile />} />
             <Route path='/create-sample' element={<CreateSample />} />
+            <Route path='/create-pack' element={<CreatePack />} />
+
 
           </Route>
 

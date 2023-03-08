@@ -22,7 +22,6 @@ const EditProfile = () => {
   const navigate = useNavigate()
 
 
-
   useEffect(() => {
     if (user) {
       setArtistName(user.artist_name);
@@ -89,7 +88,6 @@ const EditProfile = () => {
             Profile Picture:
             <input type="file" name="profileImage" 
             onChange={(e) => handleFileUpload(e)}
-            // onChange={(e) => setProfileImage(e.target.value)}
              />
           </label>
           <label>

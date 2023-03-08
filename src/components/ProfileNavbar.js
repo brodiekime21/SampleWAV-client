@@ -20,7 +20,11 @@ const ProfileNavbar = () => {
                 getToken() ? 
                 <>
 
+
+
                     {user && <Link to={`/create-sample/`}>Create A Sample</Link>}
+                    {user && <Link to={`/create-pack/`}>Create A Pack</Link>}
+
                     {user && <Link to={`/edit-profile/${user._id}`}>Edit Profile</Link>}
 
 

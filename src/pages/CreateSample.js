@@ -16,7 +16,6 @@ const CreateSample = () => {
 
   const [sampleFile, setSampleFile] = useState('');
   const [sampleName, setSampleName] = useState('');
-  const [musicTags, setMusicTags] = useState([]);
   const [instrument, setInstrument] = useState('');
   const [genres, setGenres] = useState([]);
   const [key, setKey] = useState('');
@@ -32,7 +31,6 @@ const CreateSample = () => {
     if (sample) {
         setOldSampleFile(sample.sample_file);
         setSampleName(sample.sample_name);
-        setMusicTags(sample.music_tags);
         setInstrument(sample.instrument)
         setGenres(sample.genres);
         setKey(sample.key);
@@ -49,7 +47,6 @@ const CreateSample = () => {
             const res = await post(`/samples/create-sample`, { 
               sample_file: sampleFile || oldSampleFile, 
               sample_name: sampleName,
-              music_tags: musicTags,
               instrument: instrument,
               genres: [] || genres.map((curr) => curr.value),
               key: key,

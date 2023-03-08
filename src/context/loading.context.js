@@ -10,7 +10,8 @@ const LoadingProvider = ({ children }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [user, setUser] = useState(null);
     const [message, setMessage] = useState('');
-    const [sample, setSample] = useState([])
+    const [sample, setSample] = useState([]);
+    const [pack, setPack] = useState([])
 
 
     const setTimedMessage = (newMessage) => {
@@ -24,7 +25,7 @@ const LoadingProvider = ({ children }) => {
 
 
       return (
-        <LoadingContext.Provider value={{ sample, setSample, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
+        <LoadingContext.Provider value={{ pack, setPack, sample, setSample, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
           {children}
         </LoadingContext.Provider>
       );
