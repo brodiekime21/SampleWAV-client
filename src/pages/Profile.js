@@ -25,7 +25,7 @@ const Profile = () => {
 
   const navigate = useNavigate()
 
-  const handleDelete = (id) => {
+  const handleSampleDelete = (id) => {
     get(`/samples/delete/${id}`)
     .then((result) => {
       console.log("after delete", result.data)
@@ -38,9 +38,21 @@ const Profile = () => {
     
   }
 
+  const handlePackDelete = (id) => {
+    get(`/packs/delete/${id}`)
+    .then((result) => {
+      console.log("after delete", result.data)
+      setUser(result.data)
+      navigate(`/profile/${id}`)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
 return (
     <div>
-      <h1>Profile</h1>
+      <h1>Your Profile</h1>
       {user && (
         <div>
           <p>{user.artist_name}</p>
@@ -56,6 +68,8 @@ return (
       )}
     
      <ProfileNavbar />
+
+     <h2>Your Samples</h2>
      {user &&
         user.samples.map((samp) => {
           console.log(samp.sample_file);
@@ -63,27 +77,28 @@ return (
             <>
             <audio src={samp.sample_file} controls></audio>
             
-            <button onClick={()=>handleDelete(samp._id)}>Delete</button>
+            <button onClick={()=>handleSampleDelete(samp._id)}>Delete</button>
             
 
             </>
           );
         })}
+        <h2>Your Packs</h2>
+      {user &&
+        user.packs.map((pack) => {
+          console.log(pack);
 
-      {/* {user &&
-        user.samples.map((samp) => {
-          console.log(samp.sample_file);
           return (
             <>
-            <audio src={samp.sample_file} controls></audio>
-            MAKE THIS FOR PACKS AFTER ROUTES ARE DONE
-            <button onClick={()=>handleDelete(samp._id)}>Delete</button>
+            <h3>{pack.pack_name}</h3>
+            <img id="pack_image" src={pack.pack_image} alt="Pack"/>
+            
+            <button onClick={()=>handlePackDelete(pack._id)}>Delete</button>
             
 
             </>
           );
-        })} */}
-
+        })}
     </div>
   );
 };

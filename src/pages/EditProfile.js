@@ -10,9 +10,9 @@ import CreateSocialLinks from '../components/CreateSocialLinks';
 
 const EditProfile = () => {
   const { id } = useParams();
+  const { user, setUser } = useContext(LoadingContext);
   const [artistName, setArtistName] = useState('');
   const [profileImage, setProfileImage] = useState('');
-  const { user, setUser } = useContext(LoadingContext);
   const [oldProfileImage, setOldProfileImage] = useState('')
   const [city, setCity] = useState('');
   const [country, setCountry] = useState('');

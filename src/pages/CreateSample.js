@@ -11,7 +11,7 @@ import { genreOptions, keyOptions, instrumentOptions, typeOptions } from "../ser
 const CreateSample = () => { 
   const { id } = useParams();
   const { user, setUser } = useContext(LoadingContext);
-  const {sample} = useContext(LoadingContext)
+  const {sample, setSample} = useContext(LoadingContext)
 
 
   const [sampleFile, setSampleFile] = useState('');
@@ -40,7 +40,6 @@ const CreateSample = () => {
     }
   }, [sample]);
 
-
   const handleSubmit = async (e) => {
           e.preventDefault();
           try {
@@ -48,14 +47,14 @@ const CreateSample = () => {
               sample_file: sampleFile || oldSampleFile, 
               sample_name: sampleName,
               instrument: instrument,
-              genres: [] || genres.map((curr) => curr.value),
+              genres: [] || genres.map((curr) => curr.value) || [],
               key: key,
               bpm: bpm,
               type: type,
               sample_image: sampleImage || oldSampleImage,
             });
             console.log("NEW SAMPLE", res.data);
-            setUser(res.data);
+            setSample(res.data);
             navigate(`/profile/${id}`);
             
           } catch (err) {
@@ -93,7 +92,7 @@ const CreateSample = () => {
           console.log("Upload data" , uploadData, e.target.files)
           post('/samples/new-sample-image', uploadData)
             .then((result) => {
-              setSampleImage(result.data.sampleFile)
+              setSampleImage(result.data.sampleImage)
               console.log("This is sample", result.data)
             })
             .catch((err) => {

@@ -12,7 +12,7 @@ const CreatePack = () => {
   const { id } = useParams();
   const { user, setUser } = useContext(LoadingContext);
   const {sample} = useContext(LoadingContext)
-  const {pack} = useContext(LoadingContext)
+  const {pack, setPack} = useContext(LoadingContext)
 
 
   const [samples, setSamples] = useState('');
@@ -33,20 +33,27 @@ const CreatePack = () => {
         setOldPackImage(sample.pack_image)
     }
   }, [pack]);
-
-
   const handleSubmit = async (e) => {
           e.preventDefault();
+          console.log("THIS IS samples",samples)
+          console.log("THIS IS packName",packName)
+          console.log("THIS IS instruments",instruments)
+          console.log("THIS IS genres",genres)
+          console.log("THIS IS packImage",packImage)
+          console.log("THIS IS oldPackImage",oldPackImage)
+
+
+          
           try {
             const res = await post(`/packs/create-pack`, { 
-              samples: samples, 
+              samples: [] || samples.map((curr) => curr.value) || [], 
               pack_name: packName,
-              instruments: [] || instruments.map((curr) => curr.value),
-              genres: [] || genres.map((curr) => curr.value),
+              instruments: [] || instruments.map((curr) => curr.value) || [],
+              genres: [] || genres.map((curr) => curr.value) || [],
               pack_image: packImage || oldPackImage,
             });
             console.log("NEW PACK", res.data);
-            setUser(res.data);
+            setPack(res.data);
             navigate(`/profile/${id}`);
             
           } catch (err) {
@@ -73,6 +80,8 @@ const CreatePack = () => {
   //           })}
   // }
 
+
+
   const handlePackImageUpload = (e) => {
 
         console.log("Uploading pack image...")
@@ -81,27 +90,43 @@ const CreatePack = () => {
           uploadData.append('packImage', e.target.files[0])
 
           if (e.target.files.length){  
-          console.log("Upload data" , uploadData, e.target.files)
+          console.log("Upload data" , uploadData)
           post('/packs/new-pack-image', uploadData)
             .then((result) => {
-              setPackImage(result.data.packFile)
-              console.log("This is pack", result.data)
+              setPackImage(result.data.packImage)
+              console.log("This is pack image", result.data)
             })
             .catch((err) => {
               console.log("Upload error", err)
             })}
   }
 
+
+  const sampleOptions = (samples) => {
+    return samples.map((sample) => {
+      return { label: sample.sample_name, value: sample._id}
+    })
+  }
+
+
   return (
         <div>
           <h1>Create Your Pack</h1>
-            {user && (
+            {user && 
+            
+            <> 
+            
+            {
+
+              user.samples.length &&
+
               <form onSubmit={handleSubmit}>
 
-                <label>
-                  Pack samples:
+              {/* {console.log("This is user", user)} */}
 
-                </label>
+              <label htmlFor="samples">Choose the samples from your library:</label>
+                  <Select name="samples" id="samples" options={sampleOptions(user.samples)} isMulti onChange={(e) => setSamples(e)}>
+                </Select>
 
                 <label>
                   Pack Image:
@@ -117,17 +142,19 @@ const CreatePack = () => {
 
 
                 <label htmlFor="instruments">Choose the instruments:</label>
-                  <Select name="instruments" id="instruments" options={instrumentOptions} isMulti onChange={(e) => setInstruments(e.value)}>
+                  <Select name="instruments" id="instruments" options={instrumentOptions} isMulti onChange={(e) => setInstruments(e)}>
                 </Select>
 
                 <label htmlFor="genres">Choose the genres:</label>
                   <Select name="genres" options={genreOptions} id="genres" isMulti onChange={(e) => {console.log(genres) ;setGenres(e)}}>
                   </Select>
 
-                <button type="submit">Create Sample</button>
+                <button type="submit">Create Pack</button>
 
               </form>
-            )}
+            }
+            </>
+            }
         </div>
   )
 }
