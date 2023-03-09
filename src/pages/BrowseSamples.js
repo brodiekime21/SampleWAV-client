@@ -43,7 +43,7 @@ const BrowseSamples = () => {
             <h3>{sample.sample_name}</h3>
             <img id="sample_image" src={sample.sample_image} alt="Sample"/>
             <audio src={sample.sample_file} controls></audio>
-            <a href={`http://localhost:4000/samples/${sample._id}/download`} download>Download</a>
+            <a href={`${baseUrl}/samples/${sample._id}/download`} download>Download</a>
 
  
             </>
