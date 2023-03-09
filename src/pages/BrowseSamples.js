@@ -5,6 +5,7 @@ import { get } from "../services/authService";
 import { useParams, Link } from "react-router-dom";
 import Avatar from 'react-avatar'
 // import styled from "styled-components";
+import { baseUrl } from "../services/baseUrl";
 
 
 const BrowseSamples = () => {
@@ -42,8 +43,8 @@ const BrowseSamples = () => {
             <h3>{sample.sample_name}</h3>
             <img id="sample_image" src={sample.sample_image} alt="Sample"/>
             <audio src={sample.sample_file} controls></audio>
+            <a href={`${baseUrl}/samples/${sample._id}/download`} download>Download</a>
 
-            <p>hi</p>
  
             </>
           );
