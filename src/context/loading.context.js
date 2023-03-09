@@ -22,8 +22,6 @@ const LoadingProvider = ({ children }) => {
     }
 
 
-
-
       return (
         <LoadingContext.Provider value={{ pack, setPack, sample, setSample, setUser, user, setIsLoading, setMessage, setTimedMessage }}>
           {children}

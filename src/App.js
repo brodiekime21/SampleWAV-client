@@ -1,5 +1,6 @@
 import { Routes, Route, Navigate, Outlet } from 'react-router-dom'
 import './App.css';
+import { useState } from 'react';
 
 import Navbar from './components/Navbar';
 
@@ -12,10 +13,12 @@ import CreateSample from './pages/CreateSample';
 import BrowseSamples from './pages/BrowseSamples';
 import CreatePack from './pages/CreatePack';
 import PackDetails from './pages/PackDetails';
+import BrowsePacks from './pages/BrowsePacks';
 
 
 const App = () => {
 
+  const [isLoading,setIsLoading] = useState(true)
 
   const getToken = () => {
     return localStorage.getItem("authToken")
@@ -38,14 +41,16 @@ const App = () => {
 
           <Route path='/' element={<Home />} />
           <Route path='/browse-samples' element={<BrowseSamples />} />
+          <Route path='/browse-packs' element={<BrowsePacks />} />
+          <Route path='/pack-details/:id' element={<PackDetails />} />
+
 
           <Route element={<LoggedIn />}>
 
-            <Route path='/profile/:id' element={<Profile />} />
+            <Route path='/profile/:id' element={<Profile isLoading={isLoading} setIsLoading={setIsLoading} />} />
             <Route path='/edit-profile/:id' element={<EditProfile />} />
-            <Route path='/create-sample' element={<CreateSample />} />
+            <Route path='/create-sample' element={<CreateSample isLoading={isLoading} setIsLoading={setIsLoading}/>} />
             <Route path='/create-pack' element={<CreatePack />} />
-            <Route path='/pack-details/:id' element={<PackDetails />} />
 
 
 

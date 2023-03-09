@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { LoadingContext } from "../context/loading.context"
 
-const ProfileNavbar = () => {
+const ProfileNavbar = ({setIsLoading}) => {
 
     const getToken = () => {
         return localStorage.getItem("authToken")

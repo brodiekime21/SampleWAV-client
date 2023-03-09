@@ -8,7 +8,7 @@ import { genreOptions, keyOptions, instrumentOptions, typeOptions } from "../ser
 
 
 
-const CreateSample = () => { 
+const CreateSample = ({isLoading, setIsLoading}) => { 
   const { id } = useParams();
   const { user, setUser } = useContext(LoadingContext);
   const {sample, setSample} = useContext(LoadingContext)
@@ -42,6 +42,7 @@ const CreateSample = () => {
 
   const handleSubmit = async (e) => {
           e.preventDefault();
+
           try {
             const res = await post(`/samples/create-sample`, { 
               sample_file: sampleFile || oldSampleFile, 
@@ -55,7 +56,8 @@ const CreateSample = () => {
             });
             console.log("NEW SAMPLE", res.data);
             setSample(res.data);
-            navigate(`/profile/${id}`);
+            setIsLoading(false);
+            navigate(`/profile/${user._id}`);
             
           } catch (err) {
             console.log(err);

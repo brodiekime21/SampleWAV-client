@@ -8,21 +8,21 @@ import PackDetails from "./PackDetails";
 // import styled from "styled-components";
 
 
-const Profile = () => {
-  const { user, setUser  } = useContext(LoadingContext);
+const Profile = ({isLoading, setIsLoading}) => {
+  const { user, setUser, sample  } = useContext(LoadingContext);
+
+  const [render, setRender] = useState(false)
   const { userId } = useParams();
 
   // let newUser = setUser(user)
   // const joinDate = new Date(user.created_at).toLocaleDateString();
 
   // const [mySamples, setMySamples] = useState(null);
-  // useEffect(() => {
-  //   get(`/samples/browse-samples?userId=${userId}`).then((response) => {
-  //     console.log(response.data);
-  //     setMySamples(response.data);
-  //     console.log("THIS IS THE USER LINE 25",user)
-  //   });
-  // }, [userId]);
+  useEffect(() => {
+    console.log("USEEFFECT CONSOLE",isLoading)
+    setRender(!render)
+    setIsLoading(true)
+  }, [sample]);
 
   const navigate = useNavigate()
 
@@ -36,7 +36,6 @@ const Profile = () => {
     .catch((err) => {
       console.log(err)
     })
-    
   }
 
   const handlePackDelete = (id) => {

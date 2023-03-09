@@ -8,7 +8,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
 
-    const { setIsLoading, setUser, setMessage, user } = useContext(LoadingContext)
+    const { isLoading, setIsLoading, setUser, setMessage, user } = useContext(LoadingContext)
 
     const navigate = useNavigate();
 
