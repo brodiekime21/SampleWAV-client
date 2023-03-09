@@ -28,7 +28,7 @@ const BrowseSamples = () => {
       console.log(response.data);
       setSample(response.data);
     });
-  }, []);
+  }, [sample]);
 
 
   return (
