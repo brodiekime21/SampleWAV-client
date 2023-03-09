@@ -21,6 +21,8 @@ const CreatePack = () => {
   const [genres, setGenres] = useState([]);
   const [packImage, setPackImage] = useState('');
   const [oldPackImage, setOldPackImage] = useState('');
+  const [isUploading, setIsUploading] = useState(false); // new state variable
+
 
   const navigate = useNavigate()
 
@@ -76,6 +78,8 @@ const CreatePack = () => {
 
 
   const handlePackImageUpload = (e) => {
+    setIsUploading(true); // set isUploading to true
+
 
         console.log("Uploading pack image...")
     
@@ -91,7 +95,11 @@ const CreatePack = () => {
             })
             .catch((err) => {
               console.log("Upload error", err)
-            })}
+            })
+            .finally(() => {
+              setIsUploading(false); // set isUploading to false after the upload is complete
+            });
+          }
   }
 
 
@@ -147,8 +155,11 @@ const CreatePack = () => {
                     (e) =>  handleGenresChange(e)
                     }>
                   </Select>
-
+                  {isUploading ? (
+            <p>Uploading photo...</p>
+          ) : (
                 <button type="submit">Create Pack</button>
+          )}
 
               </form>
               ) : (

@@ -24,6 +24,9 @@ const CreateSample = () => {
   const [sampleImage, setSampleImage] = useState('');
   const [oldSampleFile, setOldSampleFile] = useState('');
   const [oldSampleImage, setOldSampleImage] = useState('');
+  const [isUploadingFile, setIsUploadingFile] = useState(false); // new state variable
+  const [isUploadingImage, setIsUploadingImage] = useState(false); // new state variable
+
 
   const navigate = useNavigate()
 
@@ -68,6 +71,8 @@ const CreateSample = () => {
   }
 
   const handleSampleUpload = (e) => {
+    setIsUploadingFile(true); // set isUploading to true
+
 
         console.log("Uploading sample...")
     
@@ -83,10 +88,15 @@ const CreateSample = () => {
             })
             .catch((err) => {
               console.log("Upload error", err)
-            })}
+            })
+            .finally(() => {
+              setIsUploadingFile(false); // set isUploading to false after the upload is complete
+            });
+          }
   }
 
   const handleSampleImageUpload = (e) => {
+    setIsUploadingImage(true); // set isUploading to true
 
         console.log("Uploading sample image...")
     
@@ -102,7 +112,11 @@ const CreateSample = () => {
             })
             .catch((err) => {
               console.log("Upload error", err)
-            })}
+            })
+            .finally(() => {
+              setIsUploadingImage(false); // set isUploading to false after the upload is complete
+            });
+          }
   }
 
   return (
@@ -153,7 +167,12 @@ const CreateSample = () => {
                     }>
                   </Select>
 
+                  {isUploadingFile || isUploadingImage ? (
+            <p>Uploading file or photo...</p>
+          ) : (
                 <button type="submit">Create Sample</button>
+
+          )}
 
               </form>
             )}
