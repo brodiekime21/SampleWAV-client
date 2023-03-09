@@ -8,7 +8,7 @@ import { genreOptions, keyOptions, instrumentOptions, typeOptions } from "../ser
 
 
 
-const CreateSample = ({isLoading, setIsLoading}) => { 
+const CreateSample = () => { 
   const { id } = useParams();
   const { user, setUser } = useContext(LoadingContext);
   const {sample, setSample} = useContext(LoadingContext)
@@ -56,7 +56,6 @@ const CreateSample = ({isLoading, setIsLoading}) => {
             });
             console.log("NEW SAMPLE", res.data);
             setSample(res.data);
-            setIsLoading(false);
             navigate(`/profile/${user._id}`);
             
           } catch (err) {

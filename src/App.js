@@ -18,7 +18,6 @@ import BrowsePacks from './pages/BrowsePacks';
 
 const App = () => {
 
-  const [isLoading,setIsLoading] = useState(true)
 
   const getToken = () => {
     return localStorage.getItem("authToken")
@@ -47,9 +46,9 @@ const App = () => {
 
           <Route element={<LoggedIn />}>
 
-            <Route path='/profile/:id' element={<Profile isLoading={isLoading} setIsLoading={setIsLoading} />} />
+            <Route path='/profile/:id' element={<Profile />} />
             <Route path='/edit-profile/:id' element={<EditProfile />} />
-            <Route path='/create-sample' element={<CreateSample isLoading={isLoading} setIsLoading={setIsLoading}/>} />
+            <Route path='/create-sample' element={<CreateSample />} />
             <Route path='/create-pack' element={<CreatePack />} />
 
 

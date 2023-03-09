@@ -8,7 +8,7 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
 
-    const { isLoading, setIsLoading, setUser, setMessage, user } = useContext(LoadingContext)
+    const { isLoading, setIsLoading, setUser, setMessage, user, sample, pack } = useContext(LoadingContext)
 
     const navigate = useNavigate();
 
@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         authenticateUser();
-      }, []);
+      }, [sample, pack]);
 
 
     return (

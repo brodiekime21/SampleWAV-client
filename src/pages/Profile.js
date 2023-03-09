@@ -8,21 +8,15 @@ import PackDetails from "./PackDetails";
 // import styled from "styled-components";
 
 
-const Profile = ({isLoading, setIsLoading}) => {
+const Profile = () => {
   const { user, setUser, sample  } = useContext(LoadingContext);
 
-  const [render, setRender] = useState(false)
-  const { userId } = useParams();
+  const { id } = useParams();
 
   // let newUser = setUser(user)
   // const joinDate = new Date(user.created_at).toLocaleDateString();
 
   // const [mySamples, setMySamples] = useState(null);
-  useEffect(() => {
-    console.log("USEEFFECT CONSOLE",isLoading)
-    setRender(!render)
-    setIsLoading(true)
-  }, [sample]);
 
   const navigate = useNavigate()
 

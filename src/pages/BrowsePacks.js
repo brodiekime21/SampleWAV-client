@@ -34,7 +34,7 @@ useEffect(() => {
 return (
     <div>
         <h2>All Packs</h2>
-      {pack &&
+      {pack && (
         pack.map((pack) => {
           console.log(pack);
 
@@ -47,7 +47,7 @@ return (
 
             </>
           );
-        })}
+        }))}
     </div>
   );
 };
