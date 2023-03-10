@@ -111,63 +111,52 @@ const CreatePack = () => {
 
 
   return (
-        <div>
-          <h1>Create Your Pack</h1>
-            {user && 
-            
-            <> 
-             
-            {
-              
-              user.samples.length ? (
+    <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+  <h1 class="text-3xl font-bold mb-4">Create Your Pack</h1>
+  {user && (
+    <>
+      {user.samples.length ? (
+        <form onSubmit={handleSubmit} class="flex flex-col gap-4">
+    <label htmlFor="samples" class="flex flex-col gap-1">
+    <span>Choose the samples from your library:</span>
+    <Select name="samples" id="samples" options={sampleOptions(user.samples)} isMulti onChange={(e) => handleSampleChange(e)} class="border border-gray-300 rounded-md p-1" />
+  </label>
 
-              <form onSubmit={handleSubmit}>
+  <label htmlFor="pack_image" class="flex flex-col gap-1">
+    <span>Pack Image:</span>
+    <input type="file" name="pack_image" onChange={(e) => handlePackImageUpload(e)} class="border border-gray-300 rounded-md p-1" />
+  </label>
 
-              {/* {console.log("This is user", user)} */}
+  <label htmlFor="pack_name" class="flex flex-col gap-1">
+    <span>Pack Name:</span>
+    <input type="text" name="pack_name" onChange={(e) => setPackName(e.target.value)} class="border border-gray-300 rounded-md p-1" />
+  </label>
 
-              <label htmlFor="samples">Choose the samples from your library:</label>
-                  <Select name="samples" id="samples" options={sampleOptions(user.samples)} isMulti onChange={
-                    (e) => handleSampleChange(e)
-                    }>
-                </Select>
+  <label htmlFor="instruments" class="flex flex-col gap-1">
+    <span>Choose the instruments:</span>
+    <Select name="instruments" id="instruments" options={instrumentOptions} isMulti onChange={(e) => handleInstrumentChange(e)} class="border border-gray-300 rounded-md p-1" />
+  </label>
 
-                <label>
-                  Pack Image:
-                  <input type="file" name="pack_image" 
-                  onChange={(e) => handlePackImageUpload(e)}
+  <label htmlFor="genres" class="flex flex-col gap-1">
+    <span>Choose the genres:</span>
+    <Select name="genres" options={genreOptions} id="genres" isMulti onChange={(e) => handleGenresChange(e)} class="border border-gray-300 rounded-md p-1" />
+  </label>
 
-                  />
-                </label>
+  {isUploading ? (
+    <p>Uploading photo...</p>
+  ) : (
+    <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+      Create Pack
+    </button>
+  )}
+</form>
+) : (
+<p>Create samples first before you create your pack</p>
+)}
+</>
+    )}
 
-                <label>Pack Name
-                  <input type='text' name="pack_name" onChange={(e) => setPackName(e.target.value)} />
-                </label>
-
-
-                <label htmlFor="instruments">Choose the instruments:</label>
-                  <Select name="instruments" id="instruments" options={instrumentOptions} isMulti onChange={
-                    (e) => handleInstrumentChange(e)
-                    }>
-                </Select>
-
-                <label htmlFor="genres">Choose the genres:</label>
-                  <Select name="genres" options={genreOptions} id="genres" isMulti onChange={
-                    (e) =>  handleGenresChange(e)
-                    }>
-                  </Select>
-                  {isUploading ? (
-            <p>Uploading photo...</p>
-          ) : (
-                <button type="submit">Create Pack</button>
-          )}
-
-              </form>
-              ) : (
-          <p>Create samples first before you create your pack</p>
-        )}
-            </>
-            }
-        </div>
+    </div>
   )
 }
 

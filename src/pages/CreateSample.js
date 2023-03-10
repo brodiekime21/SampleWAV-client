@@ -120,63 +120,106 @@ const CreateSample = () => {
   }
 
   return (
-        <div>
-          <h1>Create Your Sample</h1>
-            {user && (
-              <form onSubmit={handleSubmit}>
-
-                <label>
-                  Sample file:
-                  <input type="file" name="sample_file" 
-                  onChange={(e) => handleSampleUpload(e)}
-
-                  />
-                </label>
-
-                <label>
-                  Sample Image:
-                  <input type="file" name="sample_image" 
-                  onChange={(e) => handleSampleImageUpload(e)}
-
-                  />
-                </label>
-
-                <label>Sample Name
-                  <input type='text' name="sample_name" onChange={(e) => setSampleName(e.target.value)} />
-                </label>
-
-                <label>BPM
-                  <input type='number' name="bpm" onChange= {(e) => setBpm(e.target.value)}/>
-                </label>
-
-                <label htmlFor="key">Choose the key:</label>
-                  <Select name="key" id="key" options={keyOptions} onChange={(e) => setKey(e.value)}>
-                </Select>
-
-                <label htmlFor="type">Choose the type:</label>
-                  <Select name="type" id="type" options={typeOptions} onChange={(e) => setType(e.value)}>
-                </Select>
-
-                <label htmlFor="instrument">Choose the instrument:</label>
-                  <Select name="instrument" id="instrument" options={instrumentOptions} onChange={(e) => setInstrument(e.value)}>
-                </Select>
-
-                <label htmlFor="genres">Choose the genres:</label>
-                  <Select name="genres" options={genreOptions} id="genres" isMulti onChange={
-                    (e) =>  handleGenresChange(e)
-                    }>
-                  </Select>
-
-                  {isUploadingFile || isUploadingImage ? (
-            <p>Uploading file or photo...</p>
-          ) : (
-                <button type="submit">Create Sample</button>
-
-          )}
-
-              </form>
-            )}
-        </div>
+    <div className="bg-white p-4 mb-4 rounded-md shadow-md">
+    <h1 className="text-3xl font-bold mb-4">Create Your Sample</h1>
+    {user && (
+      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+        <label className="flex flex-col gap-1">
+          <span>Sample file:</span>
+          <input
+            type="file"
+            name="sample_file"
+            onChange={(e) => handleSampleUpload(e)}
+          />
+        </label>
+  
+        <label className="flex flex-col gap-1">
+          <span>Sample Image:</span>
+          <input
+            type="file"
+            name="sample_image"
+            onChange={(e) => handleSampleImageUpload(e)}
+          />
+        </label>
+  
+        <label className="flex flex-col gap-1">
+          <span>Sample Name:</span>
+          <input
+            type="text"
+            name="sample_name"
+            onChange={(e) => setSampleName(e.target.value)}
+            className="border border-gray-300 rounded-md p-1"
+          />
+        </label>
+  
+        <label className="flex flex-col gap-1">
+          <span>BPM:</span>
+          <input
+            type="number"
+            name="bpm"
+            onChange={(e) => setBpm(e.target.value)}
+            className="border border-gray-300 rounded-md p-1"
+          />
+        </label>
+  
+        <label htmlFor="key" className="flex flex-col gap-1">
+          <span>Choose the key:</span>
+          <Select
+            name="key"
+            id="key"
+            options={keyOptions}
+            onChange={(e) => setKey(e.value)}
+            className="border border-gray-300 rounded-md p-1"
+          />
+        </label>
+  
+        <label htmlFor="type" className="flex flex-col gap-1">
+          <span>Choose the type:</span>
+          <Select
+            name="type"
+            id="type"
+            options={typeOptions}
+            onChange={(e) => setType(e.value)}
+            className="border border-gray-300 rounded-md p-1"
+          />
+        </label>
+  
+        <label htmlFor="instrument" className="flex flex-col gap-1">
+          <span>Choose the instrument:</span>
+          <Select
+            name="instrument"
+            id="instrument"
+            options={instrumentOptions}
+            onChange={(e) => setInstrument(e.value)}
+            className="border border-gray-300 rounded-md p-1"
+          />
+        </label>
+  
+        <label htmlFor="genres" className="flex flex-col gap-1">
+          <span>Choose the genres:</span>
+          <Select
+            name="genres"
+            options={genreOptions}
+            id="genres"
+            isMulti
+            onChange={(e) => handleGenresChange(e)}
+            className="border border-gray-300 rounded-md p-1"
+          />
+        </label>
+  
+        {isUploadingFile || isUploadingImage ? (
+          <p>Uploading file or photo...</p>
+        ) : (
+          <button
+            type="submit"
+            className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded"
+          >
+            Create Sample
+          </button>
+        )}
+      </form>
+    )}
+  </div>
   )
 }
 

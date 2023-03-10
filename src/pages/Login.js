@@ -41,19 +41,24 @@ const Login = () => {
     } 
 
     return (
-        <div>
-            <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
-                <label>Email</label>
-                <input type='email' name="email" value={thisUser.email} onChange={handleChange}></input>
+        <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+        <h1 class="text-3xl font-bold mb-4">Login</h1>
+        <form onSubmit={handleSubmit} class="flex flex-col gap-4">
+            <label class="flex flex-col gap-1">
+            <span>Email:</span>
+            <input type="email" name="email" value={thisUser.email} onChange={handleChange} class="border border-gray-300 rounded-md p-1" />
+            </label>
 
-                <label>Password</label>
-                <input type='password' name="password" value={thisUser.password} onChange={handleChange}></input>
+        <label class="flex flex-col gap-1">
+        <span>Password:</span>
+        <input type="password" name="password" value={thisUser.password} onChange={handleChange} class="border border-gray-300 rounded-md p-1" />
+        </label>
 
-                <button type="submit">Login</button>
+        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+        Login
+        </button>
 
-            </form>
-
+        </form>
         </div>
     )
 }

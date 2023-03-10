@@ -61,75 +61,49 @@ useEffect(() => {
 }, [id])
 
 return (
-    <div>
-      {packDetail && (
+<div class="bg-white p-4 mb-4 rounded-md shadow-md">
+    {packDetail && (
         <div>
-            <h1>{packDetail.pack_name} Details</h1>
-            <img id="pack_image" src={packDetail.pack_image} alt="Pack"/>
-          
+            <h1 class="text-3xl font-bold mb-4">{packDetail.pack_name}</h1>
+            <img id="pack_image" src={packDetail.pack_image} alt="Pack" class="w-30 mb-4"/>
+            
         </div>
-      )}
-
-     <h2>The Samples</h2>
-
-     { packDetail && 
-        
+    )}
+    <h2 class="text-2xl font-medium mb-4">The Samples</h2>
+    {packDetail && (
         <>
-        {console.log(pack)}
-     {
-
-
-      packDetail.samples ? 
-
-        
-     
-      packDetail.samples.map((sample) => {
-       return (
-           <>
-           <div className="samples">
-           <p>{sample.sample_name}</p>
-           <p>BPM: {sample.bpm}</p>
-           <p>Type: {sample.type}</p>
-
-           <p>Key: {sample.key}</p>
-           <p>instrument: {sample.instrument}</p>
-           <p>genres:</p>
-           {
-            sample.genres.map((genre)=>{
-              return(
-                <>
-                    <p>{genre}</p>
-                </>
-              )
-            })
-           }
-           <audio src={sample.sample_file} controls></audio>
-           <a href={`${baseUrl}/samples/${sample._id}/download`} download>Download</a>
-           </div>
-
-       
-           {/* <button onClick={()=>handleSampleDelete(pack._id)}>Delete</button> */}
-       
-     
-           </>
-      );
-     })
-
-     : <h4>Loading...</h4>
-
-
-
-
-     }
-
+            {console.log(pack)}
+            {packDetail.samples ? (
+                packDetail.samples.map((sample) => (
+                    <div class="flex items-center bg-gray-100 mb-4 p-4 rounded-md shadow-md">
+                        <img src={sample.sample_image} alt="Sample" class="w-1/6 h-20 w-20 mr-4"/>
+                        <div class="w-4/5">
+                            <h3 class="text-2xl font-medium">{sample.sample_name}</h3>
+                            <div class="flex justify-between items-center mt-2">
+                                <p class="mr-4">BPM: {sample.bpm}</p>
+                                <p class="mr-4">Key: {sample.key}</p>
+                                <p class="mr-4">Instrument: {sample.instrument}</p>
+                                <p class="mr-4">Type: {sample.type}</p>
+                                <div class="flex flex-wrap">
+                                    {sample.genres.map((genre, index) => (
+                                        <span key={index} class="mr-2 mb-1 bg-gray-200 rounded-md py-1 px-2 text-sm">{genre}</span>
+                                    ))}
+                                </div>
+                            </div>
+                            <div class="flex justify-end mt-2">
+                                <audio src={sample.sample_file} controls class="w-4/5 mr-4"></audio>
+                                <a href={`${baseUrl}/samples/${sample._id}/download`} download class="mr-2 bg-purple-600 text-white py-1 px-4 rounded-md hover:bg-purple-700">Download</a>
+                                {/* <button onClick={()=>handleSampleDelete(pack._id)}>Delete</button> */}
+                            </div>
+                        </div>
+                    </div>
+                ))
+            ) : (
+                <h4>Loading...</h4>
+            )}
         </>
-
-
-
-     }
-        
-    
-    </div>
+    )}
+</div>
   );
 };
 

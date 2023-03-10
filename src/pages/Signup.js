@@ -42,23 +42,28 @@ const Signup = () => {
     } 
 
     return (
-        <div>
-            <h1>Signup</h1>
-            <form onSubmit={handleSubmit}>
 
-                <label>Artist Name</label>
-                <input type='text' name="artist_name" value={newUser.artist_name} onChange={handleChange}></input>
+        <div class="bg-white p-4 mb-4 rounded-md shadow-md">
+        <h1 class="text-3xl font-bold mb-4">Signup</h1>
+        <form onSubmit={handleSubmit} class="flex flex-col gap-4">
+        <label class="flex flex-col gap-1">
+        <span>Artist Name:</span>
+        <input type="text" name="artist_name" value={newUser.artist_name} onChange={handleChange} class="border border-gray-300 rounded-md p-1" />
+        </label>
+        <label class="flex flex-col gap-1">
+        <span>Email:</span>
+        <input type="email" name="email" value={newUser.email} onChange={handleChange} class="border border-gray-300 rounded-md p-1" />
+        </label>
 
-                <label>Email</label>
-                <input type='email' name="email" value={newUser.email} onChange={handleChange}></input>
+        <label class="flex flex-col gap-1">
+        <span>Password:</span>
+        <input type="password" name="password" value={newUser.password} onChange={handleChange} class="border border-gray-300 rounded-md p-1" />
+        </label>
 
-                <label>Password</label>
-                <input type='password' name="password" value={newUser.password} onChange={handleChange}></input>
-
-                <button type="submit">Sign Up</button>
-
-            </form>
-
+        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+        Sign Up
+        </button>
+        </form>
         </div>
     )
 }

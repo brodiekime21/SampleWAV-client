@@ -179,45 +179,51 @@ const EditProfile = () => {
   }
 
   return (
-    <div>
-      <h1>Edit Profile</h1>
-      {user && (
-        <form onSubmit={handleSubmit}>
-            <label>
-              Artist Name:
-              <input type="text" name="artistName" value={artistName} onChange={(e) => setArtistName(e.target.value)} />
-            </label>
+<div class="bg-white p-4 mb-4 rounded-md shadow-md">
+  <h1 class="text-3xl font-bold mb-4">Edit Profile</h1>
+  {user && (
+    <form onSubmit={handleSubmit} class="flex flex-col gap-4">
+      <label class="flex flex-col gap-1">
+        <span>Artist Name:</span>
+        <input type="text" name="artistName" value={artistName} onChange={(e) => setArtistName(e.target.value)} class="border border-gray-300 rounded-md p-1" />
+      </label>
 
-            <label>
-              Bio:
-              <input type="text" name="bio" value={bio} onChange={(e) => setBio(e.target.value)} />
-            </label>
-            <label>
-              City:
-              <input type="text" name="city" value={city} onChange={(e) => setCity(e.target.value)} />
-            </label>
-            <label>
-              Country:
-              <input type="text" name="country" value={country} onChange={(e) => setCountry(e.target.value)} />
-            </label>
-          <label>
-            Profile Picture:
-            <input type="file" name="profileImage" 
-            onChange={(e) => handleFileUpload(e)}
-             />
-          </label>
-          {isUploading ? (
-            <p>Uploading photo...</p>
-          ) : (
-            <button type="submit">Save</button>
-          )}
-        </form>
+      <label class="flex flex-col gap-1">
+        <span>Bio:</span>
+        <input type="text" name="bio" value={bio} onChange={(e) => setBio(e.target.value)} class="border border-gray-300 rounded-md p-1" />
+      </label>
+
+      <label class="flex flex-col gap-1">
+        <span>City:</span>
+        <input type="text" name="city" value={city} onChange={(e) => setCity(e.target.value)} class="border border-gray-300 rounded-md p-1" />
+      </label>
+
+      <label class="flex flex-col gap-1">
+        <span>Country:</span>
+        <input type="text" name="country" value={country} onChange={(e) => setCountry(e.target.value)} class="border border-gray-300 rounded-md p-1" />
+      </label>
+
+      <label class="flex flex-col gap-1">
+        <span>Profile Picture:</span>
+        <input type="file" name="profileImage" onChange={(e) => handleFileUpload(e)} class="border border-gray-300 rounded-md p-1" />
+      </label>
+
+      {isUploading ? (
+        <p>Uploading photo...</p>
+      ) : (
+        <button type="submit" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">
+          Save
+        </button>
       )}
-      {/* <CreateSocialLinks /> */}
+    </form>
+  )}
 
-      <button onClick={()=>handleUserDelete(user._id)}>Delete Profile</button>
+  {/* <CreateSocialLinks /> */}
 
-    </div>
+  <button onClick={() => handleUserDelete(user._id)} class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+    Delete Profile
+  </button>
+</div>
   );
 }
 
