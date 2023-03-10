@@ -95,10 +95,11 @@ import { useContext, useState, useEffect } from "react";
 import { LoadingContext } from "../context/loading.context";
 import { post } from '../services/authService'
 import CreateSocialLinks from '../components/CreateSocialLinks';
+import { get } from '../services/authService';
 
 const EditProfile = () => {
   const { id } = useParams();
-  const { user, setUser } = useContext(LoadingContext);
+  const { user, setUser, setSample } = useContext(LoadingContext);
   const [artistName, setArtistName] = useState('');
   const [profileImage, setProfileImage] = useState('');
   const [oldProfileImage, setOldProfileImage] = useState('')
@@ -130,7 +131,7 @@ const EditProfile = () => {
         bio: bio
       });
       console.log(res.data);
-      setUser(res.data)
+      setSample(previous => [...previous])
       navigate(`/profile/${id}`)
 
       
@@ -160,6 +161,21 @@ const EditProfile = () => {
           setIsUploading(false); // set isUploading to false after the upload is complete
         });
     }
+  }
+
+  const handleUserDelete = (id) => {
+    get(`/users/delete/${id}`)
+    localStorage.clear();
+    setUser(null)
+    navigate(`/`)
+    // .then((result) => {
+    //   console.log("after delete", result.data)
+    //   setUser(null)
+    //   navigate(`/`)
+    // })
+    .catch((err) => {
+      console.log(err)
+    })
   }
 
   return (
@@ -197,7 +213,10 @@ const EditProfile = () => {
           )}
         </form>
       )}
-      <CreateSocialLinks />
+      {/* <CreateSocialLinks /> */}
+
+      <button onClick={()=>handleUserDelete(user._id)}>Delete Profile</button>
+
     </div>
   );
 }

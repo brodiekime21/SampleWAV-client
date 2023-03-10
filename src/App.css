@@ -19,3 +19,35 @@ img {
 .edit-social-links {
   margin-top: 20vh;
 }
+
+.samples{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  
+}
+
+.samples h3{
+  width: 200px
+
+}
+
+.samples p{
+  font-size: small;
+  margin: 0px -15px;
+  color: black;
+}
+
+.samples audio{
+  width: 35vw
+}
+
+.samples img{
+  height: 60px;
+  margin-top: 5px;
+  
+}
+
+.logoNavBar{
+  height: 30px;
+}

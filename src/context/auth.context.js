@@ -23,7 +23,6 @@ const AuthProvider = ({ children }) => {
                 .then((results) => {
                     console.log("Are we logged in?", results.data);
                     setUser(results.data)
-
                 })
                 .catch((err) => {
                     localStorage.clear();
@@ -39,7 +38,6 @@ const AuthProvider = ({ children }) => {
                 setIsLoading(false);
                 setUser(null);
             }
-
     }
 
     const logout = () => {
@@ -54,6 +52,7 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         authenticateUser();
       }, [sample, pack]);
+
 
 
     return (

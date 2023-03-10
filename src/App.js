@@ -14,6 +14,7 @@ import BrowseSamples from './pages/BrowseSamples';
 import CreatePack from './pages/CreatePack';
 import PackDetails from './pages/PackDetails';
 import BrowsePacks from './pages/BrowsePacks';
+import BrowseProfile from './pages/BrowseProfile';
 
 
 const App = () => {
@@ -42,11 +43,11 @@ const App = () => {
           <Route path='/browse-samples' element={<BrowseSamples />} />
           <Route path='/browse-packs' element={<BrowsePacks />} />
           <Route path='/pack-details/:id' element={<PackDetails />} />
-
+          <Route path='/profile/:id' element={<Profile />} />
+          <Route path='/browse-profile/:id' element={<BrowseProfile />}/>
 
           <Route element={<LoggedIn />}>
 
-            <Route path='/profile/:id' element={<Profile />} />
             <Route path='/edit-profile/:id' element={<EditProfile />} />
             <Route path='/create-sample' element={<CreateSample />} />
             <Route path='/create-pack' element={<CreatePack />} />

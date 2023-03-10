@@ -2,6 +2,8 @@ import { Link } from "react-router-dom"
 import { useContext } from "react"
 import { LoadingContext } from "../context/loading.context"
 import { AuthContext } from "../context/auth.context"
+import SearchBar from "./SearchBar"
+import { NavLink } from "react-router-dom"
 
 const Navbar = () => {
 
@@ -14,32 +16,39 @@ const Navbar = () => {
     const { logout } = useContext(AuthContext)
 
     return (
-        <nav>
+        <nav className="bg-black flex items-center justify-between flex-wrap p-6">
+            <Link to={'/'} className="flex items-center mr-6">
+                <img className="logoNavBar h-8" src={require('../logoColor.png')} alt="SampleWAV logo"/>
+            </Link>
 
-            <Link to={'/'}>Home</Link>
-            <Link to={'/browse-samples'}>Browse Samples</Link>
-            <Link to={'/browse-packs'}>Browse Packs</Link>
+            <div className="flex items-center">
+                <NavLink to={'/'} exact activeClassName="text-white" className="mr-6 hover:text-white">Home</NavLink>
+                <NavLink to={'/browse-samples'} activeClassName="text-white" className="mr-6 hover:text-white">Browse Samples</NavLink>
+                <NavLink to={'/browse-packs'} activeClassName="text-white" className="mr-6 hover:text-white">Browse Packs</NavLink>
+                {/* <SearchBar /> */}
 
-            {/* add search bar here for users and samples based on their name for each */}
-            {/* <Link onClick={getCountries} to={'/countries'}>Countries</Link>
-            <Link to={'/posts'}>Posts</Link> */}
+                {/* add search bar here for users and samples based on their name for each */}
+                {/* <Link onClick={getCountries} to={'/countries'}>Countries</Link>
+                <Link to={'/posts'}>Posts</Link> */}
+            </div>
 
-            {
-                getToken() ? 
-                <>
-                    {user && <Link to={`/profile/${user._id}`}>Profile</Link>}
+            <div className="flex items-center">
+                {
+                    getToken() ? 
+                    <>
+                        {user && <NavLink to={`/profile/${user._id}`} activeClassName="text-white" className="mr-6 hover:text-white">Profile</NavLink>}
 
-                    <button onClick={logout}>Logout</button>
-                </>
+                        <button onClick={logout} className="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded">Logout</button>
+                    </>
 
-                : 
+                    : 
 
-                <>
-                    <Link to={'/signup'}>Signup</Link>
-                    <Link to={'/login'}>Login</Link>
-                </>
-            }
-
+                    <>
+                        <NavLink to={'/signup'} activeClassName="text-white" className="mr-6 hover:text-white">Signup</NavLink>
+                        <NavLink to={'/login'} activeClassName="text-white" className="mr-6 hover:text-white">Login</NavLink>
+                    </>
+                }
+            </div>
         </nav>
     )
 }

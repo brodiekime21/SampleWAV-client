@@ -3,6 +3,7 @@ import { LoadingContext } from "../context/loading.context";
 import ProfileNavbar from "../components/ProfileNavbar";
 import { get } from "../services/authService";
 import { useNavigate, useParams } from "react-router-dom";
+import { baseUrl } from "../services/baseUrl";
 
 
 const PackDetails = () => {
@@ -39,66 +40,73 @@ const PackDetails = () => {
 
 const { user, pack, setPack } = useContext(LoadingContext)
 
+const [packDetail, setPackDetail]= useState([])
+
 const { id } = useParams()
 
 
 useEffect(() => {
-    if (!pack) {
+    
         get(`/packs/pack-details/${id}`)
         .then((results) => {
-            // console.log("Found pack", results.data)
+            console.log("Found pack", results)
             
-            setPack(results.data)
+            setPackDetail(results.data)
             
         })
         .catch((err) => {
             console.log(err)
         })
-    }
-}, [])
-
-
+    
+}, [id])
 
 return (
     <div>
-      {pack && (
+      {packDetail && (
         <div>
-            <h1>{pack.pack_name} Details</h1>
-            <img id="pack_image" src={pack.pack_image} alt="Pack"/>
+            <h1>{packDetail.pack_name} Details</h1>
+            <img id="pack_image" src={packDetail.pack_image} alt="Pack"/>
           
         </div>
       )}
 
      <h2>The Samples</h2>
 
-     { pack && 
+     { packDetail && 
         
         <>
         {console.log(pack)}
      {
 
 
-        pack.samples.length ?
+      packDetail.samples ? 
 
         
      
-       pack.samples.map((sample) => {
+      packDetail.samples.map((sample) => {
        return (
            <>
+           <div className="samples">
            <p>{sample.sample_name}</p>
-           <p>{sample.bpm}</p>
-           <p>{sample.genres}</p>
-           <p>{sample.instrument}</p>
+           <p>BPM: {sample.bpm}</p>
+           <p>Type: {sample.type}</p>
+
+           <p>Key: {sample.key}</p>
+           <p>instrument: {sample.instrument}</p>
+           <p>genres:</p>
            {
             sample.genres.map((genre)=>{
               return(
                 <>
-                    <p>{genre.genres}</p>
+                    <p>{genre}</p>
                 </>
               )
             })
            }
            <audio src={sample.sample_file} controls></audio>
+           <a href={`${baseUrl}/samples/${sample._id}/download`} download>Download</a>
+           </div>
+
        
            {/* <button onClick={()=>handleSampleDelete(pack._id)}>Delete</button> */}
        

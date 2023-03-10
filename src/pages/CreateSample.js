@@ -57,8 +57,8 @@ const CreateSample = () => {
               type: type,
               sample_image: sampleImage || oldSampleImage,
             });
-            console.log("NEW SAMPLE", res.data);
-            setSample(res.data);
+            console.log("NEW SAMPLE line 60", res.data);
+            setSample(res.data.samples);
             navigate(`/profile/${user._id}`);
             
           } catch (err) {
