@@ -75,4 +75,4 @@ This project is licensed under the Creative Commons Attribution-NonCommercial-Sh
 
 ## Support
 
-If you have any questions or encounter any issues while playing the game, please open an issue on the GitHub repository.
+If you have any questions or encounter any issues while using the website, please open an issue on the GitHub repository.
