@@ -34,7 +34,7 @@
 //           <input
 //             type="text"
 //             name="platform"
-//             value={link.platform}
+//             value={link.platform}comp
 //             placeholder="Social Media Platform"
 //             onChange={(event) => handleChange(event, index)}
 //           />
@@ -60,26 +60,28 @@
 
 // export default CreateSocialLinks;
 
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const CreateSocialLinks = ({ onSave }) => {
-  const [socialMediaLinks, setSocialMediaLinks] = useState([
-  ]); 
+  const [socialMediaLinks, setSocialMediaLinks] = useState([]);
 
-  const [link, setLink] = useState({ social_media_platform: '', social_media_link: '' })
+  const [link, setLink] = useState({
+    social_media_platform: "",
+    social_media_link: "",
+  });
 
   const handleChange = (e) => {
     // const { name, value } = event.target;
     // const updatedLinks = [...socialMediaLinks];
     // updatedLinks[index][name] = value;
     // setSocialMediaLinks(updatedLinks);
-    setLink((previous) => ({...previous, [e.target.name]: e.target.value}))
+    setLink((previous) => ({ ...previous, [e.target.name]: e.target.value }));
   };
 
   const handleAddLink = () => {
     setSocialMediaLinks([...socialMediaLinks, link]);
-    setLink({ social_media_platform: '', social_media_link: '' })
+    setLink({ social_media_platform: "", social_media_link: "" });
   };
 
   const handleRemoveLink = (index) => {
@@ -95,49 +97,48 @@ const CreateSocialLinks = ({ onSave }) => {
 
   return (
     <div className="edit-social-links">
-        <>
+      <>
         {console.log("links", socialMediaLinks)}
 
         <>
-
-        {
-            !!socialMediaLinks.length && socialMediaLinks.map((link) => {
-                return (
-                    <div>
-                        <Link to={link.social_media_link}>{link.social_media_platform}</Link>
-                    </div>
-                )
-            })
-        }
-
+          {!!socialMediaLinks.length &&
+            socialMediaLinks.map((link) => {
+              return (
+                <div>
+                  <Link to={link.social_media_link}>
+                    {link.social_media_platform}
+                  </Link>
+                </div>
+              );
+            })}
         </>
 
         <form onSubmit={handleSubmit}>
-            <button type="button" onClick={(index) => handleRemoveLink(index)}>
-                Remove
-            </button>
-            <div>
+          <button type="button" onClick={(index) => handleRemoveLink(index)}>
+            Remove
+          </button>
+          <div>
             <input
-                type="text"
-                name="social_media_platform"
-                value={link.social_media_platform}
-                placeholder="Social Media Platform"
-                onChange={(event) => handleChange(event)}
+              type="text"
+              name="social_media_platform"
+              value={link.social_media_platform}
+              placeholder="Social Media Platform"
+              onChange={(event) => handleChange(event)}
             />
             <input
-                type="text"
-                name="social_media_link"
-                value={link.social_media_link}
-                placeholder="Social Media Link"
-                onChange={(event) => handleChange(event)}
+              type="text"
+              name="social_media_link"
+              value={link.social_media_link}
+              placeholder="Social Media Link"
+              onChange={(event) => handleChange(event)}
             />
-            </div>
-        <button type="button" onClick={handleAddLink}>
+          </div>
+          <button type="button" onClick={handleAddLink}>
             Add Social Media Link
-        </button>
-        <button type="submit">Save Social Media Links</button>
+          </button>
+          <button type="submit">Save Social Media Links</button>
         </form>
-        </>
+      </>
     </div>
   );
 };

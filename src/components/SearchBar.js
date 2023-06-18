@@ -1,12 +1,10 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { LoadingContext } from "../context/loading.context";
-import { useContext } from 'react';
-
+import { useContext } from "react";
 
 const SearchBar = ({ user, sample }) => {
-    
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const navigate = useNavigate();
@@ -19,13 +17,13 @@ const SearchBar = ({ user, sample }) => {
 
     user.forEach((user) => {
       if (user.name.toLowerCase().includes(query.toLowerCase())) {
-        results.push({ type: 'user', item: user });
+        results.push({ type: "user", item: user });
       }
     });
 
     sample.forEach((sample) => {
       if (sample.user.name.toLowerCase().includes(query.toLowerCase())) {
-        results.push({ type: 'sample', item: sample });
+        results.push({ type: "sample", item: sample });
       }
     });
 
@@ -33,9 +31,9 @@ const SearchBar = ({ user, sample }) => {
   };
 
   const handleResultClick = (result) => {
-    if (result.type === 'user') {
+    if (result.type === "user") {
       navigate(`/users/${result.item.id}`);
-    } else if (result.type === 'sample') {
+    } else if (result.type === "sample") {
       navigate(`/browse-samples/${result.item.id}`);
     }
   };
@@ -53,8 +51,10 @@ const SearchBar = ({ user, sample }) => {
         <ul>
           {searchResults.map((result) => (
             <li key={result.item.id} onClick={() => handleResultClick(result)}>
-              {result.type === 'user' ? result.item.name : result.item.user.name}'s{' '}
-              {result.type}
+              {result.type === "user"
+                ? result.item.name
+                : result.item.user.name}
+              's {result.type}
             </li>
           ))}
         </ul>
